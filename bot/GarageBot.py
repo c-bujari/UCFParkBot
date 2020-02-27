@@ -54,4 +54,4 @@ async def spots(ctx):
     print(f'Request honored at {currtime.strftime("%c")}')
 
 
-client.run('NjgyNjYxNzk4MTM4MjE2NDQ4.XlggFw.IDjKAOIWXdcoF6D0weySAI3LY_Y')
+client.run('NjgyNjYxNzk4MTM4MjE2NDQ4.XlgkYg.pLaodHRu0uwHUBU7WSCD_g6nQ7Y')
