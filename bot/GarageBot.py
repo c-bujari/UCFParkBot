@@ -78,13 +78,13 @@ async def spots(ctx):
 
     message = (
         f'```UCF PARKING STATUS as of {currtime.strftime("%c")}\n'
-        f'Garage A Free Spaces: {scraped_spots[0]}/{total_spots[0]}\t--- {int(float(scraped_spots[0]/total_spots[0]) * 100)}% Free\n'
-        f'Garage B Free Spaces: {scraped_spots[1]}/{total_spots[1]}\t--- {int(float(scraped_spots[1]/total_spots[1]) * 100)}% Free\n'
-        f'Garage C Free Spaces: {scraped_spots[2]}/{total_spots[2]}\t--- {int(float(scraped_spots[2]/total_spots[2]) * 100)}% Free\n'
-        f'Garage D Free Spaces: {scraped_spots[3]}/{total_spots[3]}\t--- {int(float(scraped_spots[3]/total_spots[3]) * 100)}% Free\n'
-        f'Garage H Free Spaces: {scraped_spots[4]}/{total_spots[4]}\t--- {int(float(scraped_spots[4]/total_spots[4]) * 100)}% Free\n'
-        f'Garage I Free Spaces: {scraped_spots[5]}/{total_spots[5]}\t--- {int(float(scraped_spots[5]/total_spots[5]) * 100)}% Free\n'
-        f'Libra Free Spaces   : {scraped_spots[6]}/{total_spots[6]}\t--- {int(float(scraped_spots[6]/total_spots[6]) * 100)}% Free```'
+        f'Garage A Free Spaces: {scraped_spots[0]}/{total_spots[0]}\t --- {int(float(scraped_spots[0]/total_spots[0]) * 100)}% Free\n'
+        f'Garage B Free Spaces: {scraped_spots[1]}/{total_spots[1]}\t --- {int(float(scraped_spots[1]/total_spots[1]) * 100)}% Free\n'
+        f'Garage C Free Spaces: {scraped_spots[2]}/{total_spots[2]}\t --- {int(float(scraped_spots[2]/total_spots[2]) * 100)}% Free\n'
+        f'Garage D Free Spaces: {scraped_spots[3]}/{total_spots[3]}\t --- {int(float(scraped_spots[3]/total_spots[3]) * 100)}% Free\n'
+        f'Garage H Free Spaces: {scraped_spots[4]}/{total_spots[4]}\t --- {int(float(scraped_spots[4]/total_spots[4]) * 100)}% Free\n'
+        f'Garage I Free Spaces: {scraped_spots[5]}/{total_spots[5]}\t --- {int(float(scraped_spots[5]/total_spots[5]) * 100)}% Free\n'
+        f'   Libra Free Spaces: {scraped_spots[6]}/{total_spots[6]}\t --- {int(float(scraped_spots[6]/total_spots[6]) * 100)}% Free```'
     )
     await ctx.send(message)
     currtime = datetime.datetime.now()
