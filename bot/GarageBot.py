@@ -1,21 +1,15 @@
-import discord
-from discord.ext import commands, tasks
-# from itertools import cycle
-
 import datetime
-# import numpy as np
-
-# Garage Scraper specific imports
 import urllib.request
+import discord
+import settings
+from discord.ext import commands, tasks
 from bs4 import BeautifulSoup
 
 client = commands.Bot(command_prefix = '%')
-# status = cycle(['Status 1', 'Status 2'])
-bot_token = ''
+laststatus = -1
 
 @client.event
 async def on_ready():
-    print('Initiating status updater...')
     update_status.start()
     print('Status update loop initiated.')
     print('GarageBot v0.32 Online.')
@@ -25,6 +19,7 @@ async def update_status():
     free = 0
     debug = False
     total = 1623 + 1259 + 1852 + 1241 + 1284 + 1231 + 1007
+    updated = False
 
     parking = urllib.request.urlopen('https://secure.parking.ucf.edu/GarageCount/').read()
     soup = BeautifulSoup(parking, features="lxml")
@@ -39,15 +34,26 @@ async def update_status():
             if debug:
                 print("Excluded string: \"" + item.string + "\"")
 
-    if round(free/total) < 0.20:
+    global laststatus
+
+    if round(free/total, 2) < 0.20 and laststatus != 0:
         await client.change_presence(status=discord.Status.dnd, activity=discord.Game(name='< 20% Free - :['),)
-    elif round(free/total) < 0.45:
+        laststatus = 0
+        updated = True
+    elif round(free/total, 2) < 0.45 and laststatus != 1:
         await client.change_presence(status=discord.Status.idle, activity=discord.Game(name='< 45% Free :|'))
-    else:
+        laststatus = 1
+        updated = True
+    elif laststatus != 2:
         await client.change_presence(status=discord.Status.online, activity=discord.Game(name='Empty As H*ck :]'))
+        laststatus = 2
+        updated = True
+    else:
+        updated = False
 
     currtime = datetime.datetime.now()
-    print(f'Updated status at {currtime.strftime("%c")}')
+    if updated == True:
+        print(f'Updated status at {currtime.strftime("%c")}')
 
 @client.command()
 async def ping(ctx):
@@ -91,4 +97,4 @@ async def spots(ctx):
     print(f'Request honored at {currtime.strftime("%c")}')
 
 
-client.run(bot_token)
+client.run(settings.token)
