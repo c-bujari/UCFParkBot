@@ -18,7 +18,7 @@ async def on_ready():
     print('Initiating status updater...')
     update_status.start()
     print('Status update loop initiated.')
-    print('GarageBot v0.3 Online.')
+    print('GarageBot v0.32 Online.')
 
 @tasks.loop(minutes=2)
 async def update_status():
@@ -39,12 +39,12 @@ async def update_status():
             if debug:
                 print("Excluded string: \"" + item.string + "\"")
 
-    if round(free/total) < 0.55:
-        await client.change_presence(status=discord.Status.online, activity=discord.Game(name='< 55% - :)'),)
-    elif round(free/total) < 0.80:
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game(name='< 80% :|'))
+    if round(free/total) < 0.20:
+        await client.change_presence(status=discord.Status.dnd, activity=discord.Game(name='< 20% Free - :['),)
+    elif round(free/total) < 0.45:
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game(name='< 45% Free :|'))
     else:
-        await client.change_presence(status=discord.Status.dnd, activity=discord.Game(name='>= 80% :('))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game(name='Empty As H*ck :]'))
 
     currtime = datetime.datetime.now()
     print(f'Updated status at {currtime.strftime("%c")}')
@@ -78,13 +78,13 @@ async def spots(ctx):
 
     message = (
         f'```UCF PARKING STATUS as of {currtime.strftime("%c")}\n'
-        f'Garage A Free Spaces: {scraped_spots[0]}/{total_spots[0]}\t--- {int(float((total_spots[0]-scraped_spots[0])/total_spots[0]) * 100)}% Full\n'
-        f'Garage B Free Spaces: {scraped_spots[1]}/{total_spots[1]}\t--- {int(float((total_spots[1]-scraped_spots[1])/total_spots[1]) * 100)}% Full\n'
-        f'Garage C Free Spaces: {scraped_spots[2]}/{total_spots[2]}\t--- {int(float((total_spots[2]-scraped_spots[2])/total_spots[2]) * 100)}% Full\n'
-        f'Garage D Free Spaces: {scraped_spots[3]}/{total_spots[3]}\t--- {int(float((total_spots[3]-scraped_spots[3])/total_spots[3]) * 100)}% Full\n'
-        f'Garage H Free Spaces: {scraped_spots[4]}/{total_spots[4]}\t--- {int(float((total_spots[4]-scraped_spots[4])/total_spots[4]) * 100)}% Full\n'
-        f'Garage I Free Spaces: {scraped_spots[5]}/{total_spots[5]}\t--- {int(float((total_spots[5]-scraped_spots[5])/total_spots[5]) * 100)}% Full\n'
-        f'Libra Free Spaces   : {scraped_spots[6]}/{total_spots[6]}\t--- {int(float((total_spots[6]-scraped_spots[6])/total_spots[6]) * 100)}% Full```'
+        f'Garage A Free Spaces: {scraped_spots[0]}/{total_spots[0]}\t--- {int(float(scraped_spots[0]/total_spots[0]) * 100)}% Free\n'
+        f'Garage B Free Spaces: {scraped_spots[1]}/{total_spots[1]}\t--- {int(float(scraped_spots[1]/total_spots[1]) * 100)}% Free\n'
+        f'Garage C Free Spaces: {scraped_spots[2]}/{total_spots[2]}\t--- {int(float(scraped_spots[2]/total_spots[2]) * 100)}% Free\n'
+        f'Garage D Free Spaces: {scraped_spots[3]}/{total_spots[3]}\t--- {int(float(scraped_spots[3]/total_spots[3]) * 100)}% Free\n'
+        f'Garage H Free Spaces: {scraped_spots[4]}/{total_spots[4]}\t--- {int(float(scraped_spots[4]/total_spots[4]) * 100)}% Free\n'
+        f'Garage I Free Spaces: {scraped_spots[5]}/{total_spots[5]}\t--- {int(float(scraped_spots[5]/total_spots[5]) * 100)}% Free\n'
+        f'Libra Free Spaces   : {scraped_spots[6]}/{total_spots[6]}\t--- {int(float(scraped_spots[6]/total_spots[6]) * 100)}% Free```'
     )
     await ctx.send(message)
     currtime = datetime.datetime.now()
