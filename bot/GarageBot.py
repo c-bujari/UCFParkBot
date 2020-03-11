@@ -45,7 +45,7 @@ async def update_status():
         laststatus = 1
         updated = True
     elif laststatus != 2:
-        await client.change_presence(status=discord.Status.online, activity=discord.Game(name='Empty As H*ck :]'))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game(name='full of corona'))
         laststatus = 2
         updated = True
     else:
@@ -83,7 +83,7 @@ async def spots(ctx):
                 print("Excluded string: \"" + item.string + "\"")
 
     message = (
-        f'```UCF PARKING STATUS as of {currtime.strftime("%c")}\n'
+        f'```UCF PARK-cough cough-ING STATUS as of {currtime.strftime("%c")}\n'
         f'Garage A Free Spaces: {scraped_spots[0]}/{total_spots[0]}\t --- {int(float(scraped_spots[0]/total_spots[0]) * 100)}% Free\n'
         f'Garage B Free Spaces: {scraped_spots[1]}/{total_spots[1]}\t --- {int(float(scraped_spots[1]/total_spots[1]) * 100)}% Free\n'
         f'Garage C Free Spaces: {scraped_spots[2]}/{total_spots[2]}\t --- {int(float(scraped_spots[2]/total_spots[2]) * 100)}% Free\n'
