@@ -12,7 +12,7 @@ laststatus = -1
 async def on_ready():
     update_status.start()
     print('Status update loop initiated.')
-    print('GarageBot v0.32 Online.')
+    print('GarageBot v0.33 Online.')
 
 @tasks.loop(minutes=2)
 async def update_status():
@@ -53,7 +53,7 @@ async def update_status():
 
     currtime = datetime.datetime.now()
     if updated == True:
-        print(f'Updated status at {currtime.strftime("%c")}')
+        print(f'Updated status at {currtime.strftime("%c")} EST')
 
 @client.command()
 async def ping(ctx):
@@ -64,7 +64,7 @@ async def spots(ctx):
     debug = False
 
     currtime = datetime.datetime.now()
-    print(f'Request made at {currtime.strftime("%c")}')
+    print(f'Request made at {currtime.strftime("%c")} EST')
 
     total_spots = [1623, 1259, 1852, 1241, 1284, 1231, 1007]
     scraped_spots = []
@@ -83,7 +83,7 @@ async def spots(ctx):
                 print("Excluded string: \"" + item.string + "\"")
 
     message = (
-        f'```UCF PARK-cough cough-ING STATUS as of {currtime.strftime("%c")}\n'
+        f'```UCF PARK*cough*ING STATUS as of {currtime.strftime("%c")}\n'
         f'Garage A Free Spaces: {scraped_spots[0]}/{total_spots[0]}\t --- {int(float(scraped_spots[0]/total_spots[0]) * 100)}% Free\n'
         f'Garage B Free Spaces: {scraped_spots[1]}/{total_spots[1]}\t --- {int(float(scraped_spots[1]/total_spots[1]) * 100)}% Free\n'
         f'Garage C Free Spaces: {scraped_spots[2]}/{total_spots[2]}\t --- {int(float(scraped_spots[2]/total_spots[2]) * 100)}% Free\n'
@@ -94,7 +94,7 @@ async def spots(ctx):
     )
     await ctx.send(message)
     currtime = datetime.datetime.now()
-    print(f'Request honored at {currtime.strftime("%c")}')
+    print(f'Request honored at {currtime.strftime("%c")} EST')
 
 
 client.run(settings.token)
