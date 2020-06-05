@@ -45,7 +45,7 @@ async def update_status():
         laststatus = 1
         updated = True
     elif laststatus != 2:
-        await client.change_presence(status=discord.Status.online, activity=discord.Game(name='full of corona'))
+        await client.change_presence(status=discord.Status.online, activity=discord.Game(name='me editing my bots? more likely than you think'))
         laststatus = 2
         updated = True
     else:
