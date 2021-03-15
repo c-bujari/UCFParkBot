@@ -9,4 +9,4 @@ and the BeautifulSoup docs: https://www.crummy.com/software/BeautifulSoup/bs4/do
 
 Requires Python 3 and Beautiful Soup 4 installed. Additionally requires a settings file in the /bot directory containing an authentication token, which is purposefully excluded from this repo - you will need to create your own instance of the bot via Discord's developer portal to get one.
 
-To install BS4, run `python3 -m pip install beautifulsoup4`
+To install BS4, run `python3 -m pip install beautifulsoup4`. You will also need to install lxml: `python3 -m pip install lxml`
