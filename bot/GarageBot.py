@@ -14,7 +14,7 @@ async def on_ready():
     print('Status update loop initiated.')
     print('GarageBot v0.33 Online.')
 
-@tasks.loop(minutes=2)
+@tasks.loop(minutes=10)
 async def update_status():
     free = 0
     debug = False
